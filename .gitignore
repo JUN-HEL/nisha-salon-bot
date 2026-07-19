@@ -1,8 +1,19 @@
+# Environment
+.env
+
+# Python cache
 __pycache__/
 *.pyc
-.env
+
+# Logs
 logs/
+*.log
+
+# Database
 *.db
-.venv/
+*.sqlite
+*.sqlite3
+
+# Virtual environment
 venv/
-.pytest_cache/
+.venv/
