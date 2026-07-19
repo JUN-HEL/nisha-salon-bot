@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  nisha-bot:
+    build: .
+    container_name: nisha_salon_bot
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+      - LOG_LEVEL=INFO
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data          # SQLite persistence
+      - ./logs:/app/logs          # Log files
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  salon_data:
+  salon_logs:
